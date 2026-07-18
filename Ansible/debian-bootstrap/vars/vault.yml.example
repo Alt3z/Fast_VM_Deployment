@@ -1,0 +1,8 @@
+В этом файле будет лежать зашифрованные данные
+Пароль для файла задается в vault.pas
+
+Файл создается через ansible-vault create vars/vault.yml --vault-password-file vault.pass
+Редактирование через ansible-vault edit vars/vault.yml --vault-password-file vault.pass
+
+В файл помещаются данные следующего типа:
+new_user_password_hash: "$6$GlrgIzngwoMvgvGL$JGB4ZDMos8Dx59qupTvlDHoE98CFHpc29lET1w7FoqpULBlTpeZPRYy46UOsr98SCGY13KXmf0mCQQhP4ZKRu0"
