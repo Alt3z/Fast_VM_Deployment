@@ -1,0 +1,30 @@
+---
+- name: Смена root-пароля и удаление SSH-доступа для root
+  hosts: debian_vms
+  become: true
+  vars_files:
+    - vars/vault.yml
+
+  tasks:
+    - name: Смена пароля root
+      user:
+        name: root
+        password: "{{ root_password_hash }}"
+
+    - name: Запретить SSH-логин под root
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?PermitRootLogin'
+        line: 'PermitRootLogin no'
+      notify: restart ssh
+
+    - name: Удалить authorized_keys у root (если есть)
+      file:
+        path: /root/.ssh/authorized_keys
+        state: absent
+
+  handlers:
+    - name: restart ssh
+      service:
+        name: ssh
+        state: restarted

@@ -1,0 +1,12 @@
+---
+- name: Удаление пользователя vagrant и его ключей
+  hosts: debian_vms
+  become: true
+
+  tasks:
+    - name: Удалить пользователя vagrant вместе с домашней директорией
+      user:
+        name: vagrant
+        state: absent
+        remove: true    # удаляет /home/vagrant целиком, включая .ssh/authorized_keys
+        force: true      # на случай запущенных процессов от его имени

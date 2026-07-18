@@ -1,0 +1,56 @@
+---
+- name: Проверка проведённых мероприятий
+  hosts: debian_vms
+  become: true
+  gather_facts: false
+  vars_files:
+    - vars/vault.yml
+  vars:
+    ansible_password: "{{ user_ssh_password }}"
+    ansible_become_password: "{{ user_ssh_password }}"
+
+  tasks:
+    - name: Проверка что vagrant удалён
+      command: getent passwd vagrant
+      register: vagrant_check
+      failed_when: false
+      changed_when: false
+
+    - name: Проверка что домашняя директория vagrant удалена
+      stat:
+        path: /home/vagrant
+      register: vagrant_home_check
+
+    - name: Проверка что user существует
+      command: getent passwd user
+      register: user_check
+      failed_when: false
+      changed_when: false
+
+    - name: Проверка что user в группе sudo
+      command: groups user
+      register: user_groups_check
+      failed_when: false
+      changed_when: false
+
+    - name: Проверка PermitRootLogin в sshd_config
+      command: grep -i "^PermitRootLogin" /etc/ssh/sshd_config
+      register: root_login_check
+      failed_when: false
+      changed_when: false
+
+    - name: Проверка PasswordAuthentication в sshd_config
+      command: grep -i "^PasswordAuthentication" /etc/ssh/sshd_config
+      register: password_auth_check
+      failed_when: false
+      changed_when: false
+
+    - name: Вывод результатов
+      debug:
+        msg:
+          - "vagrant в passwd: {{ 'ЕСТЬ (плохо)' if vagrant_check.rc == 0 else 'отсутствует (ок)' }}"
+          - "/home/vagrant: {{ 'существует (плохо)' if vagrant_home_check.stat.exists else 'удалена (ок)' }}"
+          - "user в passwd: {{ 'ЕСТЬ (ок)' if user_check.rc == 0 else 'отсутствует (плохо)' }}"
+          - "группы user: {{ user_groups_check.stdout }}"
+          - "PermitRootLogin: {{ root_login_check.stdout }}"
+          - "PasswordAuthentication: {{ password_auth_check.stdout }}"

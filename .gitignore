@@ -1,2 +1,4 @@
 Vagrant/*/.vagrant
-*/vault.pass
+**/vault.pass
+**/vault.yml
+**/keys/*

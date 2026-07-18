@@ -1,0 +1,44 @@
+---
+- name: Базовая настройка Debian VM
+  hosts: debian_vms
+  become: true
+  vars:
+    new_user: user
+  vars_files:
+    - vars/vault.yml
+
+  tasks:
+    - name: apt update
+      apt:
+        update_cache: true
+
+    - name: Установка базовых пакетов
+      apt:
+        name:
+          - sudo
+          - curl
+          - python3
+          - openssh-server
+        state: present
+
+    - name: Создание пользователя user с паролем
+      user:
+        name: "{{ new_user }}"
+        password: "{{ new_user_password_hash }}"
+        shell: /bin/bash
+        groups: sudo
+        append: yes
+        state: present
+
+    - name: Разрешить парольную аутентификацию в sshd
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?PasswordAuthentication'
+        line: 'PasswordAuthentication yes'
+      notify: restart ssh
+
+  handlers:
+    - name: restart ssh
+      service:
+        name: ssh
+        state: restarted
