@@ -29,9 +29,9 @@ Vagrant/
 
 ## Сеть
 
-`Чтобы была bridge сеть`: node.vm.network "public_network", ip: m[:ip], bridge: "eth0"
+`Чтобы была bridge сеть:` node.vm.network "public_network", ip: m[:ip], bridge: "eth0"
 
-`Чтобы была HostOnly`: node.vm.network "private_network", ip: m[:ip]
+`Чтобы была HostOnly:` node.vm.network "private_network", ip: m[:ip]
 
 ## Особенности конфига
 
@@ -50,4 +50,4 @@ vagrant destroy -f          # удалить все машины
 
 ## Дальше
 
-После `vagrant up` машины передаются в `Ansible/debian-bootstrap` для настройки.
+После того, как все машины поднимутся, переходите к Ansible.
