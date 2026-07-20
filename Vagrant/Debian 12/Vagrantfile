@@ -1,6 +1,6 @@
 machines = [
-  { name: "debian01", ip: "192.168.56.151", memory: 2048, cpus: 2 },
-  { name: "debian02", ip: "192.168.56.152", memory: 2048, cpus: 2 }
+  { name: "test1", ip: "192.168.56.181", memory: 2048, cpus: 2 },
+  { name: "test2", ip: "192.168.56.182", memory: 2048, cpus: 2 }
 ]
 
 Vagrant.configure("2") do |config|
