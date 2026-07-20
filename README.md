@@ -72,7 +72,6 @@ mkpasswd --method=sha-512 <ПАРОЛЬ>
 ```
 
 Задать секреты для хранилища паролей
-nano Ansible/debian-bootstrap/vault.pass
 
 ```bash
 nano Ansible/debian-bootstrap/vault.pass
