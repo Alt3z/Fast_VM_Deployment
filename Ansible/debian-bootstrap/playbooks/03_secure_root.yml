@@ -2,8 +2,12 @@
 - name: Смена root-пароля и удаление SSH-доступа для root
   hosts: debian_vms
   become: true
+  vars:
+    ansible_user: user
+    ansible_password: "{{ user_ssh_password }}"
+    ansible_become_password: "{{ user_ssh_password }}"
   vars_files:
-    - vars/vault.yml
+    - ../vars/vault.yml
 
   tasks:
     - name: Смена пароля root

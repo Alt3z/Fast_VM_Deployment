@@ -3,9 +3,11 @@
   hosts: debian_vms
   become: true
   vars:
+    ansible_user: vagrant
+    ansible_ssh_private_key_file: ~/Fast_VM_Deployment/Ansible/keys/matrix_key
     new_user: user
   vars_files:
-    - vars/vault.yml
+    - ../vars/vault.yml
 
   tasks:
     - name: apt update

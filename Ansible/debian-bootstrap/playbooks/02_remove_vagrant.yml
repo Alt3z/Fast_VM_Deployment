@@ -2,11 +2,14 @@
 - name: Удаление пользователя vagrant и его ключей
   hosts: debian_vms
   become: true
+  vars:
+    ansible_user: vagrant
+    ansible_ssh_private_key_file: ~/.vagrant.d/insecure_private_key
 
   tasks:
     - name: Удалить пользователя vagrant вместе с домашней директорией
       user:
         name: vagrant
         state: absent
-        remove: true    # удаляет /home/vagrant целиком, включая .ssh/authorized_keys
-        force: true      # на случай запущенных процессов от его имени
+        remove: true
+        force: true
