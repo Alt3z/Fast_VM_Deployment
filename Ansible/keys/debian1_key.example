@@ -1,0 +1,14 @@
+В этом файле должен быть приватный ключ от пользователя vagrant на конечно тачке. Получить можно следующим образом:
+1. Зайти в папку с VagrantFile
+2. Выполнять команду vagrant ssh-config и получить путь до файла с ключем
+3. Скопировать ключ в файл debian1_key
+
+Пример:
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAA
+AAtzc2gtZWQyNTUxOQAAACAIyMK/MnqR3tE7m/Qm5/s/Eqw4ULoRMD5wJq5y
+Vel3xQAAAJAFaZx1BWmcdQAAAAtzc2gtZWQyNTUxOQAAACAIyMK/MnqR3tE7
+m/Qm5/s/Eqw4ULoRMD5wJq5yVel3xQAAAEALcrWCAxym4o2IQytAFZ/CrE5M
+PRdNi8EOgkB6WWztZwjIwr8yepHe0Tub9Cbn+z8SrDhQuhEwPnAmrnJV6XfF
+AAAAB3ZhZ3JhbnQBAgMEBQY=
+-----END OPENSSH PRIVATE KEY-----

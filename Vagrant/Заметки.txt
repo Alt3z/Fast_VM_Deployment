@@ -1,2 +1,0 @@
-node.vm.network "private_network", ip: m[:ip] 				# делает HostOnly
-node.vm.network "public_network", ip: m[:ip], bridge: "eth0"		# делает Bridge

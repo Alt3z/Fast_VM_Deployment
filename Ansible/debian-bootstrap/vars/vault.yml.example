@@ -1,8 +1,15 @@
 В этом файле будет лежать зашифрованные данные
 Пароль для файла задается в vault.pas
 
-Файл создается через ansible-vault create vars/vault.yml --vault-password-file vault.pass
-Редактирование через ansible-vault edit vars/vault.yml --vault-password-file vault.pass
+Файл создается через ansible-vault create vars/vault.yml
+Редактирование через ansible-vault edit vars/vault.yml
+Просмотреть файл через ansible-vault view vars/vault.yml
 
-В файл помещаются данные следующего типа:
+В файл помещаются данные следующего типа (эти 3 поля нужны для плейбуков в эти проекте):
 new_user_password_hash: "$6$GlrgIzngwoMvgvGL$JGB4ZDMos8Dx59qupTvlDHoE98CFHpc29lET1w7FoqpULBlTpeZPRYy46UOsr98SCGY13KXmf0mCQQhP4ZKRu0"
+root_password_hash: "$6$GlrgIzngwoMvgvGL$JGB4ZDMos8Dx59qupTvlDHoE98CFHpc29lET1w7FoqpULBlTpeZPRYy46UOsr98SCGY13KXmf0mCQQhP4ZKRu0"
+user_ssh_password: "<ПАРОЛЬ>"
+
+Хэш можно получить так:
+sudo apt install -y whois
+mkpasswd --method=sha-512 <ПАРОЛЬ>

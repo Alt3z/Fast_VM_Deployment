@@ -3,8 +3,11 @@
   hosts: debian_vms
   become: true
   vars:
-    ansible_user: vagrant
-    ansible_ssh_private_key_file: ~/.vagrant.d/insecure_private_key
+    ansible_user: user
+    ansible_password: "{{ user_ssh_password }}"
+    ansible_become_password: "{{ user_ssh_password }}"
+  vars_files:
+    - ../vars/vault.yml
 
   tasks:
     - name: Удалить пользователя vagrant вместе с домашней директорией

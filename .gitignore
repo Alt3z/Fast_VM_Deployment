@@ -4,5 +4,4 @@ Vagrant/*/.vagrant
 **/vault.yml
 **/keys/*
 
-!**/keys/example
-!**/vault.pass.exaple
+!**/keys/debian1_key.example
