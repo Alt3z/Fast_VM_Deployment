@@ -61,28 +61,40 @@ chmod 600 Ansible/keys/<имя_машины>_key
 **4. Создать недостающие файлы**
 
 Если необходимо задать базовый редактор:
+```bash
 export EDITOR=nano
+```
 
 Захэшировать пароли
+```bash
 sudo apt install -y whois
 mkpasswd --method=sha-512 <ПАРОЛЬ>
+```
 
 Задать секреты для хранилища паролей
 nano Ansible/debian-bootstrap/vault.pass
+```bash
 nano Ansible/debian-verify/vault.pass
+```
 
 Создать хранилище
+```bash
 Файл создается через ansible-vault create vars/vault.yml
 Редактирование через ansible-vault edit vars/vault.yml
 Просмотреть файл через ansible-vault view vars/vault.yml
+```
 
 В хранилище для debian-bootstrap вставить данные типа:
+```bash
 new_user_password_hash: "<ХЭШ> (пример $6$GlrgIzngwoMvgvGL$JGB4ZDMos8Dx59qupTvlDHoE98CFHpc29lET1w7FoqpULBlTpeZPRYy46UOsr98SCGY13KXmf0mCQQhP4ZKRu0)"
 root_password_hash: "<ХЭШ>"
 user_ssh_password: "<ПАРОЛЬ> (просто пароль в открытом виде)"
+```
 
 В хранилище для debian-verify вставить данные типа:
+```bash
 user_ssh_password: "<ПАРОЛЬ> (просто пароль в открытом виде)"
+```
 
 **5. Настроить машину**
 
