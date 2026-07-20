@@ -1,1 +1,7 @@
 Vagrant/*/.vagrant
+
+**/vault.pass
+**/vault.yml
+**/keys/*
+
+!**/keys/debian1_key.example
