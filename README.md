@@ -43,7 +43,7 @@ vagrant up
 vagrant ssh-config <имя_машины>
 ```
 
-Скопируйте `IdentityFile` в `Ansible/debian-bootstrap/keys/<имя_машины>_key` (на управляющую Linux-машину, откуда запускается Ansible).
+Скопируйте `IdentityFile` в `Ansible/keys/<имя_машины>_key` (на управляющую Linux-машину, откуда запускается Ansible).
 
 ```bash
 chmod 700 Ansible/keys/
