@@ -29,10 +29,8 @@ Vagrant/
 
 ## Сеть
 
-`public_network` (bridge) — VM получают адрес напрямую в физической LAN хоста. Имя bridge-адаптера:
-
-- `Чтобы была bridge сеть`: node.vm.network "public_network", ip: m[:ip], bridge: "eth0"
-- `Чтобы была HostOnly`: node.vm.network "private_network", ip: m[:ip]
+`Чтобы была bridge сеть`: node.vm.network "public_network", ip: m[:ip], bridge: "eth0"
+`Чтобы была HostOnly`: node.vm.network "private_network", ip: m[:ip]
 
 ## Особенности конфига
 
