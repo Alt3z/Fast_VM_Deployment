@@ -55,7 +55,7 @@ chmod 600 Ansible/keys/<имя_машины>_key
 В `Ansible/debian-bootstrap/inventory.ini` и `Ansible/debian-verify/inventory.ini`:
 
 ```ini
-<имя_машины> ansible_host=<IP> ansible_ssh_private_key_file=/home/user/Fast_VM_Deployment/Ansible/keys/<имя_машины>_key
+<имя_машины> ansible_host=<IP> ansible_ssh_private_key_file=~/Fast_VM_Deployment/Ansible/keys/<имя_машины>_key
 ```
 
 **4. Создать недостающие файлы**
