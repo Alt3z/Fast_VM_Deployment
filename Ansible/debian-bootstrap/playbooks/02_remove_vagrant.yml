@@ -16,3 +16,21 @@
         state: absent
         remove: true
         force: true
+
+    - name: Отмонтировать /vagrant и убрать из fstab
+      block:
+        - name: Проверить, примонтирован ли /vagrant
+          command: mountpoint -q /vagrant
+          register: vagrant_mounted
+          failed_when: false
+          changed_when: false
+
+        - name: Отмонтировать /vagrant
+          command: umount /vagrant
+          when: vagrant_mounted.rc == 0
+
+        - name: Убрать запись /vagrant из /etc/fstab
+          lineinfile:
+            path: /etc/fstab
+            regexp: '.*\s/vagrant\s.*'
+            state: absent
